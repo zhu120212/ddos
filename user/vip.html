@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>网站后台</title>
+	<link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+</head>
+<style>
+
+
+section {
+	margin-bottom: 1rem;
+}
+.kj{
+  background-color:white;
+  }
+h1, h2 {
+	margin: 0;
+}
+
+.vip-level label {
+	display: inline-block;
+	margin-right: 1rem;
+}
+
+input[type="text"],
+input[type="email"],
+select {
+	font-size: 1rem;
+	padding: 0.5rem;
+	border-radius: 0.25rem;
+	border: 1px solid #b5b5b5;
+	margin-bottom: 1rem;
+}
+
+button {
+	font-size: 1rem;
+	background: #0073c5;
+	color: #fff;
+	border: none;
+	border-radius: 0.25rem;
+	padding: 0.5rem 1rem;
+	cursor: pointer;
+}
+
+#price {
+	font-size: 1.5rem;
+	color: #0073c5;
+	font-weight: bold;
+	margin-bottom: 1rem;
+}
+
+</style>
+<style>
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+		font-family: Arial, sans-serif;
+	}
+
+	body {
+   
+background: linear-gradient(to right, #1D1E1F 0%, #424242 100%);
+			color: #fff;
+	
+	}
+
+	header {
+		height: 50px;
+		background-color: #262626;
+		color: forestgreen;
+		padding: 10px;
+		width: 100%;
+position:fixed;
+	}
+
+	.menu-btn {
+		display: none;
+		float:right;
+  
+	}
+
+	h1 {
+		font-size: 24px;
+		margin: 0;
+	}
+
+	.user-info {
+		display: flex;
+		align-items: center;
+		font-size: 18px;
+	}
+
+	.user-info i {
+		font-size: 24px;
+		margin-right: 5px;
+	}
+
+	nav {
+		position: fixed;
+
+		left: -300px;
+		top: 50px;
+		background: linear-gradient(to right, #1D1E1F 0%, #424242 100%);
+			color: #fff;
+  
+		padding: 10px;
+		width: 200px;
+		height: 100vh;
+		overflow: hidden;
+	}
+
+	nav ul {
+		list-style: none;
+	}
+
+	nav li {
+		margin: 10px 0;
+	}
+
+	nav li a {
+		display: block;
+		padding: 10px;
+		color:white;
+		text-decoration: none;
+		border-radius: 5px;
+		transition: background-color 0.3s ease-in-out;
+	}
+
+	nav li a:hover {
+		background-color: #bfbfbf;
+	}
+
+	nav li a.active {
+		background-color: #888888;
+		color: white;
+	}
+
+	main {
+		padding: 20px;
+  
+	}
+
+	main h1 {
+		font-size: 24px;
+		margin-bottom: 10px;
+	}
+
+	main h2 {
+		font-size: 20px;
+		margin-bottom: 5px;
+	}
+
+	main p {
+		margin-bottom: 10px;
+	}
+
+	@media screen and (max-width: 768px) {
+		.menu-btn {
+			display: block;
+		}
+
+		header h1 {
+			display: none;
+		}
+	}
+.lou{
+  text-align:center;
+  }
+.card {
+  margin-top:6%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  background: #222;
+background-image: linear-gradient(to bottom, #00573F, #222);
+color: #fff;
+  
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  
+}
+
+.card-body {
+  padding: 10px 20px;
+}
+
+.card-title {
+  margin: 10px 0;
+}
+
+.card-text {
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+
+
+.card1 {
+  margin-top:15%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  background: #222;
+background-image: linear-gradient(to bottom, #00573F, #222);
+color: #fff;
+text-align:center;
+  
+}
+
+.card1 img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  
+}
+
+.card1-body {
+  padding: 10px 20px;
+}
+
+.card1-title {
+  margin: 10px 0;
+}
+
+.card1-text {
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+  h4{
+    float:left;
+    }
+
+</style>
+
+<body>
+	<header class="header">
+		<div class="menu-btn">
+			<i class="fas fa-bars"></i>
+		</div>
+	<div class="lou">
+ <h3>Welcome to VIP purchase page </h3>
+ 
+ </div>
+	</header>
+	<nav class="navigation-panel">
+		<ul>
+			<li><a href="index.php"><i class="fas fa-tachometer-alt"></i>后台首页</a></li>
+			<li><a href="ddos.html"><i class="fas fa-users"></i>ddos攻击</a></li>
+			<li><a href="cc.html"><i class="fas fa-chart-line"></i>cc攻击</a></li>
+			<li><a href="vip.html" class="active"><i class="fas fa-cog"></i>vip购买</a></li>
+		</ul>
+	</nav>
+	<main>
+ 
+ <div class="card1">
+<img src="https://picnew11.photophoto.cn/20170507/jinsefuguviptubiao-24997803_1.jpg"/>
+<h4>普通VIP:</h4>
+<p>一段关于普通VIP的介绍</p>
+<h4>高级VIP:</h4>
+<p>一段关于高级VIP的介绍</p>
+<h4>至尊VIP:</h4>
+<p>一段关于至尊VIP的介绍</p>
+ </div>
+
+<div class="card">
+<div class="container">
+      <h1>VIP购买页面</h1>
+      <form>
+        <div class="form-group">
+          <label for="vipLevel"> VIP  类型 ：</label>
+          <select class="kj" id="vipLevel" onchange="updatePrice()">
+          <option value="">请选择</option>
+            <option value="normal">普通VIP</option>
+            <option value="advanced">高级VIP</option>
+            <option value="supreme">至尊VIP</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="duration">购买时长：</label>
+          <select class="kj" id="duration" onchange="updatePrice()">
+          <option value="">请选择</option>
+            <option value="1">1天</option>
+            <option value="30">1个月</option>
+            <option value="365">1年</option>
+          </select>
+          <div>
+	
+					<input type="text" id="username" name="username" placeholder="请输入联系方式" required>
+				</div>
+        </div>
+        <div id="price"></div>
+        <button type="button" id="buyButton">立即购买</button>
+        <div id="payment"></div>
+      </form>
+    </div>
+  
+	</main>
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script>
+const vipLevel = document.getElementById('vipLevel');
+const duration = document.getElementById('duration');
+const price = document.getElementById('price');
+const buyButton = document.getElementById('buyButton');
+const payment = document.getElementById('payment');
+
+function updatePrice() {
+  const selectedOption = duration.options[duration.selectedIndex];
+  const level = vipLevel.value;
+  const totalPrice = calculatePrice(level, selectedOption.value);
+  price.innerText = `价格：${totalPrice}元`;
+}
+
+function calculatePrice(level, duration) {
+  let price = 0;
+
+  switch (level) {
+    case 'normal':
+      if (duration === '1') {
+        price = 10;
+      } else if (duration === '30') {
+        price = 30;
+      } else if (duration === '365') {
+        price = 200;
+      }
+      break;
+    case 'advanced':
+      if (duration === '1') {
+        price = 20;
+      } else if (duration === '30') {
+        price = 60;
+      } else if (duration === '365') {
+        price = 400;
+      }
+      break;
+    case 'supreme':
+      if (duration === '1') {
+        price = 30;
+      } else if (duration === '30') {
+        price = 120;
+      } else if (duration === '365') {
+        price = 600;
+      }
+      break;
+    default:
+      break;
+  }
+
+  return price.toFixed(2);
+}
+
+buyButton.addEventListener('click', () => {
+  const selectedOption = duration.options[duration.selectedIndex];
+  const level = vipLevel.value;
+  const totalPrice = calculatePrice(level, selectedOption.value);
+  payment.innerText = `已支付：会员${selectedOption.text}，共计 ${totalPrice} 元`;
+  alert(`您已成功购买 会员 ${selectedOption.text}，共计 ${totalPrice} 元`);
+});
+</script>
+ 	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script><script>
+		$(function () {
+			const $header = $('.header')
+			const $menuBtn = $('.menu-btn')
+			const $navigationPanel = $('.navigation-panel')
+			$(window).scroll(() => {
+				$(document).scrollTop() > 1 ? $header.css('position', 'fixed') : $header.css('position', '')
+			})
+			let flag = 1
+			$menuBtn.on('click', () => {
+				$navigationPanel.stop().animate({ left: flag ? 0 : -300 }, 'slow')
+				flag = !flag
+			})
+			$navigationPanel.find('a').on('click', function () {
+				$(this).addClass('active').parent().siblings().children().removeClass('active')
+			})
+		})
+	</script>
+ 
+</body>
+
+</html>

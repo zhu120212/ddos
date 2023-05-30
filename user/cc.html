@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>网站后台</title>
+	<link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css" rel="stylesheet">
+	  <link rel="stylesheet" href="./style.css">
+   
+</head>
+<style>
+
+nav li a.active {
+		background-color: #888888;
+		color: white;
+	}
+.kj{
+  background-color:white;
+  }
+</style>
+<body>
+	<header class="header">
+		<div class="menu-btn">
+			<i class="fas fa-bars"></i>
+		</div>
+	<div class="lou">
+ <h3>Welcome to CC attack page</h3>
+ 
+ </div>
+	</header>
+	<nav class="navigation-panel">
+		<ul>
+			<li><a href="index.php" class="1"><i class="fas fa-tachometer-alt"></i>后台首页</a></li>
+			<li><a href="ddos.html" class="2"><i class="fas fa-users"></i>ddos攻击</a></li>
+			<li><a href="#" class="active"><i class="fas fa-chart-line"></i>cc攻击</a></li>
+			<li><a href="vip.html"><i class="fas fa-cog"></i>VIP购买</a></li>
+		</ul>
+	</nav>
+	<main>
+ 
+  
+ <div class="card1">
+ 当前在线服务器:4个
+ </div>
+ 
+<div class="card">
+
+  <img src="http://image.kypeople.cn/hUyccp.gif" alt="Card Image">
+  <label>domain name</label>
+  <br>
+   <input id="ip" type="text"/>
+  
+   <br>
+   <label>time</label>
+   <br>
+   <input id="time" type="text"/>
+   <br>
+  <label>Attack mode：<select class="kj" id="method">
+    <option value="get">GET</option>
+    <option value="post">POST</option>
+  </select></label>
+  <br>
+  <br>
+  <button class="butt" id="submit">开始请求</button>
+  
+
+
+  
+</div>
+<div class="biaoge">
+<table id="result">
+    <tr>
+      <th>ip</th>
+      <th>port</th>
+      <th>time</th>
+      <th>manner</th>
+      <th>time</th>
+    </tr>
+  </table>
+
+</div>
+  </div>
+  
+	</main>
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script><script>
+		$(function () {
+			const $header = $('.header')
+			const $menuBtn = $('.menu-btn')
+			const $navigationPanel = $('.navigation-panel')
+			$(window).scroll(() => {
+				$(document).scrollTop() > 1 ? $header.css('position', 'fixed') : $header.css('position', '')
+			})
+			let flag = 1
+			$menuBtn.on('click', () => {
+				$navigationPanel.stop().animate({ left: flag ? 0 : -300 }, 'slow')
+				flag = !flag
+			})
+			$navigationPanel.find('a').on('click', function () {
+				$(this).addClass('active').parent().siblings().children().removeClass('active')
+			})
+		})
+	</script>
+ 
+ <script>
+ document.getElementById('submit').addEventListener('click', function () {
+    var ip = document.getElementById('ip').value;
+    var port = document.getElementById('port').value;
+    var time = parseInt(document.getElementById('time').value);
+    var method = document.getElementById('method').value;
+    
+    var now = new Date(); // 获取当前时间
+    var timestamp = now.getTime(); // 将当前时间转换为时间戳
+    var countdown_time = time; // 获取倒计时时间
+    
+    var table = document.getElementById('result');
+    var row = table.insertRow(1); // 将新记录插入到表格开头
+    var cell_ip = row.insertCell(0);
+    var cell_port = row.insertCell(1);
+    var cell_time = row.insertCell(2);
+    var cell_method = row.insertCell(3);
+    var cell_countdown = row.insertCell(4);
+
+    cell_ip.innerHTML = ip;
+    cell_port.innerHTML = port;
+    cell_time.innerHTML = time;
+    cell_method.innerHTML = method;
+
+    function countdown() {
+        if (countdown_time > 0) {
+            var now = new Date(); // 获取当前时间
+            var elapsed_time = Math.floor((now.getTime() - timestamp) / 1000); // 计算已经过去的秒数
+            countdown_time = Math.max(time - elapsed_time, 0); // 计算剩余的倒计时时间
+            cell_countdown.innerHTML = countdown_time;
+            setTimeout(countdown, 1000);
+        } else {
+            cell_countdown.innerHTML = '结束';
+        }
+    }
+
+    countdown();
+
+    var rows = table.rows;
+    var data = [];
+    for (var i = 1; i < rows.length; i++) {
+        var row = rows[i];
+        var record = {
+            ip: row.cells[0].innerHTML,
+            port: row.cells[1].innerHTML,
+            time: parseInt(row.cells[2].innerHTML),
+            method: row.cells[3].innerHTML,
+            timestamp: row.cells[4].getAttribute('data-timestamp') // 获取插入记录时的时间戳
+        };
+        data.push(record);
+    }
+    var record = {
+        ip: ip,
+        port: port,
+        time: time,
+        method: method,
+        timestamp: timestamp.toString() // 将插入记录时的时间戳转换为字符串
+    }
+    data.unshift(record); // 将新记录插入到表格开头
+
+    localStorage.setItem('tableData', JSON.stringify(data));
+});
+
+// 在页面加载完成时，读取本地存储中的表格内容并插入到表格中
+window.addEventListener('DOMContentLoaded', function () {
+    var data = JSON.parse(localStorage.getItem('tableData'));
+    if (data) {
+        var table = document.getElementById('result');
+        for (var i = 0; i < data.length; i++) {
+            var record = data[i];
+            var row = table.insertRow(1); // 将保存的记录插入到表格开头
+            var cell_ip = row.insertCell(0);
+            var cell_port = row.insertCell(1);
+            var cell_time = row.insertCell(2);
+            var cell_method = row.insertCell(3);
+            var cell_countdown = row.insertCell(4);
+
+            cell_ip.innerHTML = record.ip;
+            cell_port.innerHTML = record.port;
+            cell_time.innerHTML = record.time;
+            cell_method.innerHTML = record.method;
+
+            var now = new Date(); // 获取当前时间
+            var elapsed_time = Math.floor((now.getTime() - parseInt(record.timestamp)) / 1000); // 计算已经过去的秒数
+            var countdown_time = Math.max(record.time - elapsed_time, 0); // 计算剩余的倒计时时间
+            cell_countdown.innerHTML = countdown_time;
+            cell_countdown.setAttribute('data-timestamp', record.timestamp); // 将插入记录时的时间戳保存到td元素的属性中
+
+            function countdown() {
+                if (countdown_time > 0) {
+                    var now = new Date(); // 获取当前时间
+                    var elapsed_time = Math.floor((now.getTime() - parseInt(record.timestamp)) / 1000); // 计算已经过去的秒数
+                    countdown_time = Math.max(record.time - elapsed_time, 0); // 计算剩余的倒计时时间
+                    cell_countdown.innerHTML = countdown_time;
+                    setTimeout(countdown, 1000);
+                } else {
+                    cell_countdown.innerHTML = 'Done';
+                }
+            }
+
+            countdown();
+        }
+    }
+});
+
+// 在清空按钮被点击时，清空表格和本地存储并重新加载页面
+document.getElementById('clear').addEventListener('click', function () {
+    localStorage.removeItem('tableData');
+    location.reload();
+});
+ </script>
+</body>
+
+</html>
